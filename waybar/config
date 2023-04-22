@@ -1,0 +1,103 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 30,
+    "modules-left": [
+        "wlr/workspaces",
+        "custom/spotify"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "custom/storage",
+        "memory",
+        "cpu",
+        "network",
+        "pulseaudio",
+        "tray"
+    ],
+    "wlr/workspaces": {
+        "format": "{name}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+    "clock": {
+        "format": "{:%a %d %b %H:%M}",
+        "tooltip": false
+    },
+    "memory": {
+        "interval": 5,
+        "format": "󰍛 {used}G/{total}G",
+        "format-alt": "󰍛 {}%",
+        "format-alt-click": "click"
+    },
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "format-charging": " {capacity}%",
+        "interval": 30,
+        "states": {
+            "warning": 25,
+            "critical": 10
+        },
+        "tooltip": false
+    },
+    "network": {
+        "interval": 5,
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "⚠  Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}",
+        "format-muted": "",
+        "format-icons": {
+            "phone": [
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "scroll-step": 1,
+        "tooltip": false
+    },
+    "custom/spotify": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/spotify.sh",
+        "exec-if": "pgrep spotify",
+        "escape": true
+    },
+    "custom/storage": {
+        "format": " {percentage}%",
+        "format-alt": " {}",
+        "format-alt-click": "click",
+        "return-type": "json",
+        "interval": 60,
+        "exec": "~/.config/waybar/modules/storage.sh"
+    },
+    "tray": {
+        "icon-size": 18
+    },
+    "cpu": {
+        "interval": 5,
+        "format": "  {usage}% {avg_frequency}Ghz"
+    }
+}
